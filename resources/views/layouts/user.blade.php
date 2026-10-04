@@ -313,8 +313,8 @@
                        class="{{ $currentRoute === 'user.headset' ? 'active' : '' }}">Headset</a></li>
                 <li><a href="{{ route('user.monitor') }}"
                        class="{{ $currentRoute === 'user.monitor' ? 'active' : '' }}">Monitor</a></li>
-                <li><a href="{{ route('user.storage') }}"
-                       class="{{ $currentRoute === 'user.storage' ? 'active' : '' }}">Storage</a></li>
+                <li><a href="{{ route('cart.index') }}"
+                       class="{{ $currentRoute === 'cart.index' ? 'active' : '' }}"><i class="bi bi-cart3"></i> Keranjang</a></li>
             </ul>
 
             {{-- Mobile menu toggle --}}

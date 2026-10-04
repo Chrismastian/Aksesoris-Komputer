@@ -98,11 +98,21 @@ $icon = $icons[$category] ?? 'bi-box';
                 </div>
 
                 {{-- Back button --}}
-                <div class="mt-3">
+                <div class="mt-3 d-flex gap-2 flex-wrap">
                     <a href="{{ route($routeMap[$category]) }}"
                        class="btn btn-outline-primary btn-sm" style="border-radius:8px;">
                         <i class="bi bi-arrow-left me-1"></i> Kembali ke {{ $categoryName }}
                     </a>
+                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="category" value="{{ $category }}">
+                        <input type="hidden" name="name" value="{{ $product->nama }}">
+                        <input type="hidden" name="price" value="{{ $product->harga }}">
+                        <input type="hidden" name="image" value="{{ $product->gambar }}">
+                        <button type="submit" class="btn btn-primary btn-sm" style="border-radius:8px;">
+                            <i class="bi bi-cart-plus me-1"></i> Tambah ke Keranjang
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

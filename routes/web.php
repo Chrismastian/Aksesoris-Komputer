@@ -71,3 +71,11 @@ Route::get('/produk/storage',  [UserProductController::class, 'storage'])->name(
 Route::get('/produk/{category}/{id}', [UserProductController::class, 'show'])
     ->where('category', 'keyboard|mouse|headset|monitor|storage')
     ->name('user.product.show');
+// Cart routes
+use App\Http\Controllers\CartController;
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{id}', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update/{key}', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove/{key}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
