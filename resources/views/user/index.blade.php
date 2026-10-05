@@ -17,19 +17,19 @@
 
                 {{-- Category pills --}}
                 <div class="d-flex flex-wrap gap-2 mt-3">
-                    <a href="{{ route('user.keyboard') }}" class="category-pill">
+                    <a href="{{ route('user.category', 'keyboard') }}" class="category-pill">
                         <i class="bi bi-keyboard"></i> Keyboard
                     </a>
-                    <a href="{{ route('user.mouse') }}" class="category-pill">
+                    <a href="{{ route('user.category', 'mouse') }}" class="category-pill">
                         <i class="bi bi-mouse"></i> Mouse
                     </a>
-                    <a href="{{ route('user.headset') }}" class="category-pill">
+                    <a href="{{ route('user.category', 'headset') }}" class="category-pill">
                         <i class="bi bi-headset"></i> Headset
                     </a>
-                    <a href="{{ route('user.monitor') }}" class="category-pill">
+                    <a href="{{ route('user.category', 'monitor') }}" class="category-pill">
                         <i class="bi bi-display"></i> Monitor
                     </a>
-                    <a href="{{ route('user.storage') }}" class="category-pill">
+                    <a href="{{ route('user.category', 'storage') }}" class="category-pill">
                         <i class="bi bi-device-hdd"></i> Storage
                     </a>
                 </div>
@@ -50,7 +50,7 @@
     <section class="mb-5">
         <div class="section-heading">
             <h4><i class="bi bi-keyboard text-primary"></i> Keyboard</h4>
-            <a href="{{ route('user.keyboard') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('user.category', 'keyboard') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="row g-3">
             @foreach($keyboards as $product)
@@ -70,7 +70,7 @@
     <section class="mb-5">
         <div class="section-heading">
             <h4><i class="bi bi-mouse text-primary"></i> Mouse</h4>
-            <a href="{{ route('user.mouse') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('user.category', 'mouse') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="row g-3">
             @foreach($mouses as $product)
@@ -90,7 +90,7 @@
     <section class="mb-5">
         <div class="section-heading">
             <h4><i class="bi bi-headset text-primary"></i> Headset</h4>
-            <a href="{{ route('user.headset') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('user.category', 'headset') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="row g-3">
             @foreach($headsets as $product)
@@ -110,7 +110,7 @@
     <section class="mb-5">
         <div class="section-heading">
             <h4><i class="bi bi-display text-primary"></i> Monitor</h4>
-            <a href="{{ route('user.monitor') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('user.category', 'monitor') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="row g-3">
             @foreach($monitors as $product)
@@ -130,7 +130,7 @@
     <section class="mb-5">
         <div class="section-heading">
             <h4><i class="bi bi-device-hdd text-primary"></i> Storage</h4>
-            <a href="{{ route('user.storage') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('user.category', 'storage') }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="row g-3">
             @foreach($storages as $product)

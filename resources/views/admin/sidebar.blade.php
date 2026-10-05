@@ -36,6 +36,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="{{ url('/admin/pesanan') }}">Pesanan</a>
                         <a class="collapse-item" href="{{ url('/admin/keyboard') }}">Keyboard</a>
                         <a class="collapse-item" href="{{ url('/admin/mouse') }}">Mouse</a>
                         <a class="collapse-item" href="{{ url('/admin/headset') }}">Headset</a>

@@ -12,13 +12,6 @@ $icons = [
     'monitor'  => 'bi-display',
     'storage'  => 'bi-device-hdd',
 ];
-$routeMap = [
-    'keyboard' => 'user.keyboard',
-    'mouse'    => 'user.mouse',
-    'headset'  => 'user.headset',
-    'monitor'  => 'user.monitor',
-    'storage'  => 'user.storage',
-];
 $icon = $icons[$category] ?? 'bi-box';
 @endphp
 
@@ -31,7 +24,7 @@ $icon = $icons[$category] ?? 'bi-box';
                     <a href="{{ route('user.home') }}" class="text-decoration-none text-primary">Beranda</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="{{ route($routeMap[$category]) }}" class="text-decoration-none text-primary">
+                    <a href="{{ route('user.category', $category) }}" class="text-decoration-none text-primary">
                         {{ $categoryName }}
                     </a>
                 </li>
@@ -99,16 +92,12 @@ $icon = $icons[$category] ?? 'bi-box';
 
                 {{-- Back button --}}
                 <div class="mt-3 d-flex gap-2 flex-wrap">
-                    <a href="{{ route($routeMap[$category]) }}"
+                    <a href="{{ route('user.category', $category) }}"
                        class="btn btn-outline-primary btn-sm" style="border-radius:8px;">
                         <i class="bi bi-arrow-left me-1"></i> Kembali ke {{ $categoryName }}
                     </a>
-                    <form action="{{ route('cart.add', $product->id) }}" method="POST">
+                    <form action="{{ route('cart.add', [$category, $product->id]) }}" method="POST">
                         @csrf
-                        <input type="hidden" name="category" value="{{ $category }}">
-                        <input type="hidden" name="name" value="{{ $product->nama }}">
-                        <input type="hidden" name="price" value="{{ $product->harga }}">
-                        <input type="hidden" name="image" value="{{ $product->gambar }}">
                         <button type="submit" class="btn btn-primary btn-sm" style="border-radius:8px;">
                             <i class="bi bi-cart-plus me-1"></i> Tambah ke Keranjang
                         </button>
@@ -123,7 +112,7 @@ $icon = $icons[$category] ?? 'bi-box';
     <section class="mt-5">
         <div class="section-heading">
             <h4><i class="bi {{ $icon }} text-primary"></i> Produk Lainnya</h4>
-            <a href="{{ route($routeMap[$category]) }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('user.category', $category) }}">Lihat Semua <i class="bi bi-arrow-right"></i></a>
         </div>
         <div class="row g-3">
             @foreach($related as $rel)

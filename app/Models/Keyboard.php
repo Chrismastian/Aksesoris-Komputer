@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Keyboard extends Model
 {
     use HasFactory;
+
     protected $table = 'keyboard';
+
+    protected $fillable = ['nama', 'harga', 'gambar'];
 }

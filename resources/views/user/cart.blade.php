@@ -70,7 +70,7 @@
                 @csrf
                 <button type="submit" class="btn btn-outline-secondary">Kosongkan Keranjang</button>
             </form>
-            <a href="#" class="btn btn-primary">Checkout</a>
+            <a href="{{ route('checkout.index') }}" class="btn btn-primary">Checkout</a>
         </div>
     @else
         <div class="alert alert-info">Keranjang belanja kosong.</div>

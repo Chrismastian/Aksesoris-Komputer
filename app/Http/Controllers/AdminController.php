@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 use App\Models\Keyboard;
 use App\Models\Mouse;
 use App\Models\Headset;
@@ -16,7 +17,29 @@ class AdminController extends Controller
 
     function index()
     {
-        return view('admin.index');
+        return view('admin.index', [
+            'recentOrders' => Order::with('items')->latest()->take(5)->get(),
+            'revenue'     => (int) Order::whereIn('status', ['paid', 'shipped'])->sum('total'),
+            'pending'     => Order::where('status', 'pending')->count(),
+        ]);
+    }
+
+    public function orders()
+    {
+        return view('admin.orders', [
+            'orders' => Order::with('items')->latest()->paginate(15),
+        ]);
+    }
+
+    public function updateOrderStatus(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'status' => ['required', 'in:pending,paid,shipped,cancelled'],
+        ]);
+
+        Order::findOrFail($id)->update($validated);
+
+        return back()->with('success', 'Status pesanan diperbarui.');
     }
     public function keyboard()
 {

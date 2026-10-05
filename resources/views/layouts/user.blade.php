@@ -305,14 +305,14 @@
                 @php $currentRoute = Route::currentRouteName(); @endphp
                 <li><a href="{{ route('user.home') }}"
                        class="{{ $currentRoute === 'user.home' ? 'active' : '' }}">Beranda</a></li>
-                <li><a href="{{ route('user.keyboard') }}"
-                       class="{{ $currentRoute === 'user.keyboard' ? 'active' : '' }}">Keyboard</a></li>
-                <li><a href="{{ route('user.mouse') }}"
-                       class="{{ $currentRoute === 'user.mouse' ? 'active' : '' }}">Mouse</a></li>
-                <li><a href="{{ route('user.headset') }}"
-                       class="{{ $currentRoute === 'user.headset' ? 'active' : '' }}">Headset</a></li>
-                <li><a href="{{ route('user.monitor') }}"
-                       class="{{ $currentRoute === 'user.monitor' ? 'active' : '' }}">Monitor</a></li>
+                <li><a href="{{ route('user.category', 'keyboard') }}"
+                       class="{{ request('category') === 'keyboard' ? 'active' : '' }}">Keyboard</a></li>
+                <li><a href="{{ route('user.category', 'mouse') }}"
+                       class="{{ request('category') === 'mouse' ? 'active' : '' }}">Mouse</a></li>
+                <li><a href="{{ route('user.category', 'headset') }}"
+                       class="{{ request('category') === 'headset' ? 'active' : '' }}">Headset</a></li>
+                <li><a href="{{ route('user.category', 'monitor') }}"
+                       class="{{ request('category') === 'monitor' ? 'active' : '' }}">Monitor</a></li>
                 <li><a href="{{ route('cart.index') }}"
                        class="{{ $currentRoute === 'cart.index' ? 'active' : '' }}"><i class="bi bi-cart3"></i> Keranjang</a></li>
             </ul>
@@ -336,15 +336,15 @@
         <ul class="list-unstyled">
             <li class="mb-2"><a href="{{ route('user.home') }}" class="text-decoration-none text-dark fw-500">
                 <i class="bi bi-house me-2 text-primary"></i> Beranda</a></li>
-            <li class="mb-2"><a href="{{ route('user.keyboard') }}" class="text-decoration-none text-dark">
+            <li class="mb-2"><a href="{{ route('user.category', 'keyboard') }}" class="text-decoration-none text-dark">
                 <i class="bi bi-keyboard me-2 text-primary"></i> Keyboard</a></li>
-            <li class="mb-2"><a href="{{ route('user.mouse') }}" class="text-decoration-none text-dark">
+            <li class="mb-2"><a href="{{ route('user.category', 'mouse') }}" class="text-decoration-none text-dark">
                 <i class="bi bi-mouse me-2 text-primary"></i> Mouse</a></li>
-            <li class="mb-2"><a href="{{ route('user.headset') }}" class="text-decoration-none text-dark">
+            <li class="mb-2"><a href="{{ route('user.category', 'headset') }}" class="text-decoration-none text-dark">
                 <i class="bi bi-headset me-2 text-primary"></i> Headset</a></li>
-            <li class="mb-2"><a href="{{ route('user.monitor') }}" class="text-decoration-none text-dark">
+            <li class="mb-2"><a href="{{ route('user.category', 'monitor') }}" class="text-decoration-none text-dark">
                 <i class="bi bi-display me-2 text-primary"></i> Monitor</a></li>
-            <li class="mb-2"><a href="{{ route('user.storage') }}" class="text-decoration-none text-dark">
+            <li class="mb-2"><a href="{{ route('user.category', 'storage') }}" class="text-decoration-none text-dark">
                 <i class="bi bi-device-hdd me-2 text-primary"></i> Storage</a></li>
         </ul>
     </div>
@@ -369,11 +369,11 @@
             <div class="col-md-2">
                 <h6>Kategori</h6>
                 <ul class="list-unstyled" style="line-height:2">
-                    <li><a href="{{ route('user.keyboard') }}">Keyboard</a></li>
-                    <li><a href="{{ route('user.mouse') }}">Mouse</a></li>
-                    <li><a href="{{ route('user.headset') }}">Headset</a></li>
-                    <li><a href="{{ route('user.monitor') }}">Monitor</a></li>
-                    <li><a href="{{ route('user.storage') }}">Storage</a></li>
+                    <li><a href="{{ route('user.category', 'keyboard') }}">Keyboard</a></li>
+                    <li><a href="{{ route('user.category', 'mouse') }}">Mouse</a></li>
+                    <li><a href="{{ route('user.category', 'headset') }}">Headset</a></li>
+                    <li><a href="{{ route('user.category', 'monitor') }}">Monitor</a></li>
+                    <li><a href="{{ route('user.category', 'storage') }}">Storage</a></li>
                 </ul>
             </div>
             <div class="col-md-3">

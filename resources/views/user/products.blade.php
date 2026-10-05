@@ -12,13 +12,6 @@ $icons = [
     'Monitor'  => 'bi-display',
     'Storage'  => 'bi-device-hdd',
 ];
-$routeMap = [
-    'Keyboard' => 'user.keyboard',
-    'Mouse'    => 'user.mouse',
-    'Headset'  => 'user.headset',
-    'Monitor'  => 'user.monitor',
-    'Storage'  => 'user.storage',
-];
 $icon = $icons[$category] ?? 'bi-box';
 @endphp
 
@@ -44,7 +37,7 @@ $icon = $icons[$category] ?? 'bi-box';
             </h4>
 
             {{-- Search bar --}}
-            <form action="{{ route($routeMap[$category]) }}" method="GET"
+            <form action="{{ route('user.category', $slug) }}" method="GET"
                   class="d-flex gap-2" style="min-width:260px">
                 <input type="text" name="search" class="form-control form-control-sm"
                        placeholder="Cari {{ $category }}..."
@@ -55,7 +48,7 @@ $icon = $icons[$category] ?? 'bi-box';
                     <i class="bi bi-search"></i>
                 </button>
                 @if(request('search'))
-                    <a href="{{ route($routeMap[$category]) }}"
+                    <a href="{{ route('user.category', $slug) }}"
                        class="btn btn-outline-secondary btn-sm" style="border-radius:8px;">
                         <i class="bi bi-x"></i>
                     </a>
@@ -99,7 +92,7 @@ $icon = $icons[$category] ?? 'bi-box';
             @if(request('search'))
                 <h5>Produk tidak ditemukan</h5>
                 <p>Tidak ada {{ $category }} yang cocok dengan "{{ request('search') }}".</p>
-                <a href="{{ route($routeMap[$category]) }}" class="btn btn-primary btn-sm mt-2">
+                <a href="{{ route('user.category', $slug) }}" class="btn btn-primary btn-sm mt-2">
                     Lihat Semua {{ $category }}
                 </a>
             @else

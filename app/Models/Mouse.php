@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Mouse extends Model
 {
     use HasFactory;
+
     protected $table = 'mouse';
+
+    protected $fillable = ['nama', 'harga', 'gambar'];
 }

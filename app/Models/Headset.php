@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Headset extends Model
 {
     use HasFactory;
+
     protected $table = 'headset';
+
+    protected $fillable = ['nama', 'harga', 'gambar'];
 }

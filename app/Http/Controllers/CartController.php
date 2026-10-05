@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\CategoryMap;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -9,62 +10,62 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cart = Session::get('cart', []);
-        return view('user.cart', compact('cart'));
+        return view('user.cart', ['cart' => $this->cart()]);
     }
 
-    public function add(Request $request, $id)
+    public function add(Request $request, string $category, int $id)
     {
-        $category = $request->input('category');
-        $name = $request->input('name');
-        $price = (int) $request->input('price');
-        $image = $request->input('image');
+        // Price, name and image are read from the database, never from the form.
+        // The request only says which product was clicked.
+        $product = CategoryMap::model($category)::findOrFail($id);
 
-        $cart = Session::get('cart', []);
-
+        $cart = $this->cart();
         $key = $category . '_' . $id;
 
-        if (isset($cart[$key])) {
-            $cart[$key]['qty'] += 1;
-        } else {
-            $cart[$key] = [
-                'id' => $id,
-                'category' => $category,
-                'name' => $name,
-                'price' => $price,
-                'qty' => 1,
-                'image' => $image,
-            ];
-        }
+        $cart[$key] = [
+            'product_id' => $product->id,
+            'category'   => $category,
+            'name'       => $product->nama,
+            'price'      => (int) $product->harga,
+            'image'      => $product->gambar,
+            'qty'        => ($cart[$key]['qty'] ?? 0) + 1,
+        ];
 
         Session::put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart!');
+
+        return redirect()->back()->with('success', $product->nama . ' ditambahkan ke keranjang.');
     }
 
-    public function update(Request $request, $key)
+    public function update(Request $request, string $key)
     {
-        $cart = Session::get('cart', []);
+        $cart = $this->cart();
+
         if (isset($cart[$key])) {
-            $qty = max(1, (int) $request->input('qty', 1));
-            $cart[$key]['qty'] = $qty;
+            $cart[$key]['qty'] = max(1, min(99, (int) $request->input('qty', 1)));
             Session::put('cart', $cart);
         }
+
         return redirect()->route('cart.index');
     }
 
-    public function remove($key)
+    public function remove(string $key)
     {
-        $cart = Session::get('cart', []);
-        if (isset($cart[$key])) {
-            unset($cart[$key]);
-            Session::put('cart', $cart);
-        }
-        return redirect()->route('cart.index')->with('success', 'Item removed');
+        $cart = $this->cart();
+        unset($cart[$key]);
+        Session::put('cart', $cart);
+
+        return redirect()->route('cart.index')->with('success', 'Produk dihapus dari keranjang.');
     }
 
     public function clear()
     {
         Session::forget('cart');
-        return redirect()->route('cart.index')->with('success', 'Cart cleared');
+
+        return redirect()->route('cart.index')->with('success', 'Keranjang dikosongkan.');
+    }
+
+    private function cart(): array
+    {
+        return Session::get('cart', []);
     }
 }
