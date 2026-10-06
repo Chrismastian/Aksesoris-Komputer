@@ -16,12 +16,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserProductController::class, 'index'])->name('user.home');
 
-// Katalog: /produk/keyboard, /produk/mouse, dst.
 Route::get('/produk/{category}', [UserProductController::class, 'category'])
     ->where('category', implode('|', array_keys(CategoryMap::MODELS)))
     ->name('user.category');
 
-// Detail produk: /produk/keyboard/1, /produk/mouse/3, dst.
 Route::get('/produk/{category}/{id}', [UserProductController::class, 'show'])
     ->where('category', implode('|', array_keys(CategoryMap::MODELS)))
     ->name('user.product.show');
@@ -45,11 +43,11 @@ Route::get('/pesanan/{code}', [OrderController::class, 'show'])->name('order.sho
 
 /*
 |--------------------------------------------------------------------------
-| Admin
+| Admin (requires login)
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
 
     Route::get('/pesanan', [AdminController::class, 'orders'])->name('orders');
@@ -64,3 +62,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post("/hapus_{$slug}/{id}", [AdminController::class, "hapus_{$slug}"])->name("hapus_{$slug}");
     }
 });
+
+require __DIR__.'/auth.php';
