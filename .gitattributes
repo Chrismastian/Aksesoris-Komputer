@@ -6,6 +6,15 @@
 *.md diff=markdown
 *.php diff=php
 
+# Treat SVGs and generated public assets as generated for language stats
+*.svg linguist-generated=true
+public/assets/** linguist-generated=true
+public/build/** linguist-generated=true
+storage/** linguist-generated=true
+
+# Ensure PHP is the primary detected language
+*.php linguist-language=PHP
+
 /.github export-ignore
 CHANGELOG.md export-ignore
 .styleci.yml export-ignore
