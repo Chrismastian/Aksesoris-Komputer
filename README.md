@@ -2,6 +2,8 @@
 
 A Laravel e-commerce application for computer accessories, with a public storefront and an admin panel.
 
+**[Live Demo](https://aksesoris-komputer-production.up.railway.app)**
+
 ![Laravel](https://img.shields.io/badge/Laravel-10.50-FF2D20) ![PHP](https://img.shields.io/badge/PHP-8.3-777BB4) ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3) ![Tests](https://github.com/Chrismastian/Aksesoris-Komputer/actions/workflows/tests.yml/badge.svg)
 
 ## Features
