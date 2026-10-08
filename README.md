@@ -2,7 +2,7 @@
 
 A Laravel e-commerce application for computer accessories, with a public storefront and an admin panel.
 
-![Laravel](https://img.shields.io/badge/Laravel-10.50-FF2D20) ![PHP](https://img.shields.io/badge/PHP-8.1-777BB4) ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3)
+![Laravel](https://img.shields.io/badge/Laravel-10.50-FF2D20) ![PHP](https://img.shields.io/badge/PHP-8.3-777BB4) ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1) ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3) ![Tests](https://github.com/Chrismastian/Aksesoris-Komputer/actions/workflows/tests.yml/badge.svg)
 
 ## Features
 
@@ -24,7 +24,7 @@ A Laravel e-commerce application for computer accessories, with a public storefr
 | Layer | Choice |
 |---|---|
 | Framework | Laravel 10.50 |
-| Language | PHP 8.1 |
+| Language | PHP 8.3 |
 | Database | MySQL 8 (SQLite in-memory for tests) |
 | Front-end | Bootstrap 5.3, Bootstrap Icons, SBAdmin template |
 | Tests | PHPUnit + Laravel test helpers |
@@ -41,6 +41,13 @@ php artisan serve
 ```
 
 Open http://127.0.0.1:8000. Admin panel is at `/admin`.
+
+The seeder creates one admin account so you can try the panel immediately:
+
+```
+email:    admin@aksesoris.test
+password: password
+```
 
 ## Tests
 
@@ -66,13 +73,12 @@ The suite runs against an in-memory SQLite database configured in `.env.testing`
 
 ## Known limitations
 
-- The admin panel has no authentication. Every `/admin` route is publicly reachable — add Laravel Sanctum or Breeze before this goes anywhere near production.
 - Stock is not decremented on checkout; orders record what was ordered but nothing prevents overselling.
 - Checkout collects no payment. Orders stay `pending` until an admin marks them paid.
+- No CSRF-aware API endpoints for external consumers; Sanctum is installed but unused.
 
 ## What I would build next
 
-- Authentication on the admin routes (Sanctum or Breeze)
 - Stock decrement inside the checkout transaction, guarded against overselling
 - Product image upload with validation, replacing the current filename-in-DB approach
 - Customer-facing order tracking by email
